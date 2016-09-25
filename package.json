@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ycfreeman/505-AlgorithmAnalysis/issues"
   },
-  "homepage": "https://github.com/ycfreeman/505-AlgorithmAnalysis#readme"
+  "homepage": "https://github.com/ycfreeman/505-AlgorithmAnalysis#readme",
+  "dependencies": {
+    "benchmark": "2.1.1",
+  }
 }
