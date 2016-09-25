@@ -16,7 +16,7 @@ suite
         BruteForceMedian(testArray);
     })
     .add('Median', function () {
-
+        Median(testArray);
     })
 
     // add listeners
