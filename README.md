@@ -39,9 +39,10 @@ is used as opposed to
 i++
 ```
 - Math object is used on both implementations to perform mathematical tasks.
+- Results are presented using default Benchmark.js format [Explained here](http://stackoverflow.com/questions/28524653/what-do-the-results-from-benchmark-js-mean)
 
 ##Libraries Used
-- [Benchmark.js](https://benchmarkjs.com/)
+- [Benchmark.js](https://github.com/bestiejs/benchmark.js)
 
 ---
 ##Todo

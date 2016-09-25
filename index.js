@@ -30,3 +30,5 @@ suite
     .run({
         'async': true
     });
+
+// todo: more tests for different arrays

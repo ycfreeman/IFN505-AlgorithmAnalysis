@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ycfreeman/505-AlgorithmAnalysis#readme",
   "dependencies": {
-    "benchmark": "2.1.1"
+    "benchmark": "2.1.1",
+    "microtime": "^2.1.1"
   }
 }
