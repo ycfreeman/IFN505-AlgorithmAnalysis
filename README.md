@@ -46,4 +46,6 @@ i++
 
 ---
 ##Todo
-- tests for different sample size
+- tests for increasing input size
+- present results as time(ms) instead of ops/second
+- export tests results to some spreadsheet format so it can be graphed
