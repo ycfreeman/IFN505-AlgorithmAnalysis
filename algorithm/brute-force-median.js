@@ -7,10 +7,10 @@ function BruteForceMedian(A) {
     var i, j;
     var numsmaller, numequal;
 
-    for (i = 0; i <= n - 1; i += 1) {
+    for (i = 0; i <= n - 1; i = i + 1) {
         numsmaller = 0;
         numequal = 0;
-        for (j = 0; j <= n - 1; j += 1) {
+        for (j = 0; j <= n - 1; j = j + 1) {
             if (A[j] < A[i]) {
                 numsmaller = numsmaller + 1;
             } else {
