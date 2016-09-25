@@ -19,10 +19,9 @@ function BruteForceMedian(A) {
                 }
             }
         }
-    }
-
-    if (numsmaller < k && k <= (numsmaller + numequal)) {
-        return A[i];
+        if (numsmaller < k && k <= (numsmaller + numequal)) {
+            return A[i];
+        }
     }
 }
 

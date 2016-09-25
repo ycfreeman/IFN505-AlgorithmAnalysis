@@ -8,7 +8,7 @@ var Median = require('./algorithm/median').Median;
 
 var suite = new Benchmark.Suite;
 
-var testArray = [ 4, 1, 10, 9, 7, 12, 8, 2, 15];
+var testArray = [4, 1, 10, 9, 7, 12, 8, 2, 15];
 
 // add tests
 suite
