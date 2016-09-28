@@ -46,4 +46,4 @@ Array.prototype.swap = function (x, y) {
 };
 
 
-module.exports.Median = Median;
+module.exports = Median;

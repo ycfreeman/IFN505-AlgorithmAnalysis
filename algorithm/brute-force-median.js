@@ -25,4 +25,4 @@ function BruteForceMedian(A) {
     }
 }
 
-module.exports.BruteForceMedian = BruteForceMedian;
+module.exports = BruteForceMedian;

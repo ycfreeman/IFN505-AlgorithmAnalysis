@@ -16,16 +16,17 @@ npm i
 ### Using node console
 ```
 node
-> var BruteForceMedian = require('./algorithm/brute-force-median').BruteForceMedian;
-> var Median = require('./algorithm/median').Median;
+> var BruteForceMedian = require('./algorithm/brute-force-median');
+> var Median = require('./algorithm/median');
 > BruteForceMedian([4, 1, 10, 9, 7, 12, 8, 2, 15]);
 > Median([4, 1, 10, 9, 7, 12, 8, 2, 15]);
 ```
 
-### Run full test suite
+### Run full test suite, see index.js for test setup
 ```
 npm start
 ```
+then check results/ for results in csv format
 
 ---
 ## Other Notes
@@ -46,6 +47,7 @@ i++
 
 ---
 ##Todo
-- tests for increasing input size
-- present results as time(ms) instead of ops/second
-- export tests results to some spreadsheet format so it can be graphed
+- ~~tests for increasing input size~~
+- ~~present results as time(ms) instead of ops/second~~
+- ~~export tests results to some spreadsheet format so it can be graphed~~
+- test inputs for best/worse case for each algorithm
