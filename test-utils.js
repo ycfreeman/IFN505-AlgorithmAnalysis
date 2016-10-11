@@ -32,4 +32,8 @@ function makeRandom(ceil) {
 module.exports = {
     runBenchmark: runBenchmark,
     makeRandom: makeRandom
+    // can we stop the program from running when:
+    //   - the required time to calculate more than 30s 
+    //   OR - reach the maximum number we wanan set?
+    
 };
