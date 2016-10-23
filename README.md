@@ -6,8 +6,8 @@ Algorithm Analysis Project for IFN505 Assignment 2
 
 ---
 ## Install Dependencies
-``` 
-npm i 
+```
+npm i
 ```
 ---
 
@@ -51,3 +51,4 @@ i++
 - ~~present results as time(ms) instead of ops/second~~
 - ~~export tests results to some spreadsheet format so it can be graphed~~
 - test inputs for best/worse case for each algorithm
+- run on cloud - solve log file issue

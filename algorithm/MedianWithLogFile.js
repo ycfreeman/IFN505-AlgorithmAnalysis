@@ -1,7 +1,7 @@
-// working in progress, 
+// working in progress,
 // Code for Median with log file to show:
 // when Select() is called,
-// 
+//
 
 
 var arrayhistory = "";
@@ -17,14 +17,14 @@ function Median(A) {
 }
 
 function Select(A, l, m, h) {
-    
+
     console.log("\n\nSELECT:", A,
     "\n range: ", l,h, "");
     var pos = Partition(A, l, h);
-    
+
     console.log("Array after Partition:",A, "pos =", pos);
-    arrayhistory = arrayhistory + "\n"+ A; 
-    
+    arrayhistory = arrayhistory + "\n"+ A;
+
     if (pos == m) {
         return A[pos];
     } else if (pos > m) {
@@ -32,7 +32,7 @@ function Select(A, l, m, h) {
     } else if (pos < m) {
         return Select(A, pos + 1, m, h);
     }
-    
+
 }
 
 function Partition(A, l, h) {
@@ -41,8 +41,8 @@ function Partition(A, l, h) {
 
     var j;
     console.log("\nPartition:",
-    "\narray", A, 
-    "\npivotval:", pivotval, 
+    "\narray", A,
+    "\npivotval:", pivotval,
     "\npivotloc = ", pivotloc);
     for (j = l + 1; j <= h; j += 1) {
         console.log("j =", j, "bOp=",  nBasicOp++);
@@ -50,13 +50,13 @@ function Partition(A, l, h) {
             pivotloc = pivotloc + 1;
             console.log("pivotloc = ", pivotloc);
             A.swap(pivotloc, j);
-            
+
             console.log("array in loop:", A);
         }
     }
     console.log("loop end");
     A.swap(l, pivotloc);
-    
+
     return pivotloc;
 }
 

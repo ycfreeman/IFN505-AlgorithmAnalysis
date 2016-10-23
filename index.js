@@ -31,7 +31,7 @@ var mCsvStream = csv.createWriteStream({headers: true}),
 
 // generate different number of inputs and pass into runTest
 const minInputLength = 10;
-const maxInputLength = 200;
+const maxInputLength = 100;
 const inputLengthStep = 10;
 
 console.log('Testing for increasing input size', 'min: ' + minInputLength, 'max: ' + maxInputLength, 'step: ' + inputLengthStep);
@@ -52,21 +52,26 @@ for (inputLength = minInputLength; inputLength <= maxInputLength; inputLength +=
     var i;
     for (i = 0; i < inputLength; i ++) {
         if (i > 0) {
-            input[i] = input[i - 1] + makeRandom(5);
+            input.push(+input[i - 1] + makeRandom(5));
         } else {
-            input[i] = makeRandom(5);
+            input.push(+makeRandom(5));
         }
     }
 
     // shuffle the sequence to generate unsorted array of numbers
-    var shuffledInput = _.shuffle(input);
+    var shuffledInput = _.clone(_.shuffle(input));
+    var arrFn = function() {return shuffledInput;};
 
 
     console.log('input length: ' + shuffledInput.length);
+    console.log('input:', shuffledInput);
 
-    runBenchmark(shuffledInput, BruteForceMedian, bfmCsvStream);
-    runBenchmark(shuffledInput, Median, mCsvStream);
+    runBenchmark(arrFn, BruteForceMedian, bfmCsvStream);
+    runBenchmark(arrFn, Median, mCsvStream);
 }
+
+// pure random inputs with duplicates
+// get average time from each length, run until 5% time difference
 
 // end write streams and write to file
 bfmCsvStream.end();
