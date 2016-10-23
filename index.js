@@ -5,21 +5,15 @@ const fs = require('fs');
 // CSV writer
 const csv = require('fast-csv');
 
-// lodash utilities
-const _ = require('lodash');
-
 // util functions
-const runBenchmark = require('./test-utils').runBenchmark;
-const makeRandom = require('./test-utils').makeRandom;
+const testUtils = require('./test-utils');
+const runBenchmark = testUtils.runBenchmark;
+const randomArrayFn = testUtils.randomArrayFn;
 
 
 // algorithms
 const BruteForceMedian = require('./algorithm/brute-force-median');
 const Median = require('./algorithm/median');
-
-
-
-
 
 // create file stream for brute force median result spreadsheet
 var bfmCsvStream = csv.createWriteStream({headers: true}),
@@ -45,26 +39,7 @@ mCsvStream.pipe(mWriteStream);
 
 for (inputLength = minInputLength; inputLength <= maxInputLength; inputLength += inputLengthStep) {
     // generate a large number of samples and benchmark both algorithms with each sample
-
-    var input = [];
-    // generate array length of random sequential numbers
-    // each number is 1 - 5 apart
-    var i;
-    for (i = 0; i < inputLength; i ++) {
-        if (i > 0) {
-            input.push(+input[i - 1] + makeRandom(5));
-        } else {
-            input.push(+makeRandom(5));
-        }
-    }
-
-    // shuffle the sequence to generate unsorted array of numbers
-    var shuffledInput = _.clone(_.shuffle(input));
-    var arrFn = function() {return shuffledInput;};
-
-
-    console.log('input length: ' + shuffledInput.length);
-    console.log('input:', shuffledInput);
+    var arrFn = randomArrayFn(inputLength);
 
     runBenchmark(arrFn, BruteForceMedian, bfmCsvStream);
     runBenchmark(arrFn, Median, mCsvStream);
