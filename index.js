@@ -49,18 +49,11 @@ for (i = 0; i < inputSizes.length; i++) {
     inputLength = inputSizes[i];
     // generate a large number of samples and benchmark both algorithms with each sample
 
+    runBenchmark(trueRandomArrayFn(inputLength), BruteForceMedian, bfmCsvStream, 300);
     runBenchmark(trueRandomArrayFn(inputLength), Median, mCsvStream, 100);
 }
-mCsvStream.end();
-
-
-for (i = 0; i < inputSizes.length; i++) {
-    inputLength = inputSizes[i];
-    // generate a large number of samples and benchmark both algorithms with each sample
-
-    runBenchmark(trueRandomArrayFn(inputLength), BruteForceMedian, bfmCsvStream, 300);
-}
-
 
 // end write streams and write to file
 bfmCsvStream.end();
+mCsvStream.end();
+
