@@ -26,7 +26,7 @@ function Partition(A, l, h) {
 
     var j;
 
-    for (j = l + 1; j <= h; j += 1) {
+    for (j = l + 1; j <= h; j = j + 1) {
         if (A[j] < pivotval) {
             pivotloc = pivotloc + 1;
             A.swap(pivotloc, j);

@@ -4,7 +4,9 @@
   "description": "Algorithm Analysis Project for IFN505 Assignment 2",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "test1": "node index.js",
+    "test2": "node random-sample.js",
+    "test3": "node random-unique.js"
   },
   "repository": {
     "type": "git",
