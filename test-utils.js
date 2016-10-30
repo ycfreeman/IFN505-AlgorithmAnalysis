@@ -27,6 +27,7 @@ function runBenchmark(arrayFn, testFn, callback, minSamples) {
         })
         // do this per cycle
         .on('cycle', function (event) {
+            console.log(String(event.target));
             // record input length
             var arrayLength = testArray.length;
             // Benchmark.js gives result in opts/sec, we just convert it to ms

@@ -25,9 +25,9 @@ console.log(BruteForceMedian(sampleArray, counters, 'bruteForceMedian'));
 console.log(Median(sampleArray, counters, 'median'));
 // console.log('Basic Operations: ', counters.median);
 
-console.log(run(arrayFn, BruteForceMedian, function(avgCount){
+console.log(runBenchmark(arrayFn, BruteForceMedian, function(avgCount){
   console.log(avgCount);
 }, 10));
-console.log(run(arrayFn, Median, function(avgCount){
+console.log(runBenchmark(arrayFn, Median, function(avgCount){
   console.log(avgCount);
 }, 10));
