@@ -3,7 +3,7 @@ const Benchmark = require('benchmark');
 // lodash utilities
 const _ = require('lodash');
 
-function runBenchmark(arrayFn, testFn, callback, minSamples) {
+function runBenchmark(arrayFn, testFn, callback, minSamples, maxTime) {
     var suite = new Benchmark.Suite;
     var testArray = arrayFn();
     var counter = {};
@@ -23,7 +23,8 @@ function runBenchmark(arrayFn, testFn, callback, minSamples) {
                 // update testArray with arrayFn
                 testArray = arrayFn();
             },
-            minSamples: minSamples
+            minSamples: minSamples,
+            maxTime: maxTime || 5
         })
         // do this per cycle
         .on('cycle', function (event) {

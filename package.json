@@ -10,7 +10,8 @@
     "test3": "node random-unique.js",
     "test4": "node true-random-sample.js",
     "test5": "node test-average-case.js",
-    "test6": "node test-average-op.js"
+    "test6": "node test-bestworst-op.js",
+    "test7": "node test-average-op.js"
   },
   "repository": {
     "type": "git",
