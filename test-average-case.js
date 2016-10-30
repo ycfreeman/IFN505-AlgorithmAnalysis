@@ -15,8 +15,8 @@ var arrayFn = randomArrayFn(1000)
 runBenchmark(arrayFn, BruteForceMedian, function(counter){
   console.log('Execution time: ', counter.executionTime, 'ms');
   console.log('Basic Operations: ', counter.basicOps);
-}, 10);
+}, 100);
 runBenchmark(arrayFn, Median, function(counter){
   console.log('Execution time: ', counter.executionTime, 'ms');
   console.log('Basic Operations:', counter.basicOps);
-}, 10);
+}, 100);

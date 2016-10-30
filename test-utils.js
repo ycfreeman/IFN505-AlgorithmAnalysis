@@ -108,5 +108,6 @@ module.exports = {
     runBenchmark: runBenchmark,
     randomArrayFn: randomArrayFn,
     generateInputSizes: generateInputSizes,
-    randomUniqueArrayFn: randomUniqueArrayFn
+    randomUniqueArrayFn: randomUniqueArrayFn,
+    makeRandom: makeRandom
 };
