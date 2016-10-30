@@ -22,9 +22,13 @@ node
 > Median([4, 1, 10, 9, 7, 12, 8, 2, 15]);
 ```
 
-### Run full test suite, see index.js for test setup
+### Run full test suite, see package.json for path to test setups
 ```
-npm start
+npm run test
+npm run test1
+npm run test2
+npm run test3
+npm run test4
 ```
 then check results/ for results in csv format
 
@@ -50,5 +54,4 @@ i++
 - ~~tests for increasing input size~~
 - ~~present results as time(ms) instead of ops/second~~
 - ~~export tests results to some spreadsheet format so it can be graphed~~
-- test inputs for best/worse case for each algorithm
-- run on cloud - solve log file issue
+- ~~test inputs for best/worse case for each algorithm~~

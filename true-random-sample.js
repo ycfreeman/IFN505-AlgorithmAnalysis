@@ -19,11 +19,11 @@ const Median = require('./algorithm/median-log');
 
 // create file stream for brute force median result spreadsheet
 var bfmCsvStream = csv.createWriteStream({headers: true}),
-    bfmWriteStream = fs.createWriteStream('results/random-unique/brute-force-median.csv');
+    bfmWriteStream = fs.createWriteStream('results/true-random-sample/brute-force-median.csv');
 
 // create file stream for median result spreadsheet
 var mCsvStream = csv.createWriteStream({headers: true}),
-    mWriteStream = fs.createWriteStream('results/random-unique/median.csv');
+    mWriteStream = fs.createWriteStream('results/true-random-sample/median.csv');
 
 // generate different number of inputs and pass into runTest
 // const minInputLength = 10;
@@ -44,18 +44,18 @@ var inputLength, i;
 // get average time from each length, run until 5% time difference
 var inputSizes = generateInputSizes(maxInputLength, maxStep);
 
+var inputs;
 console.log('number of sample sizes:', inputSizes.length);
 for (i = 0; i < inputSizes.length; i++) {
     inputLength = inputSizes[i];
 
     // generate random sample for each sample array length and benchmark both algorithms with each sample
-    var inputFn = randomUniqueArrayFn(inputLength);
-    runBenchmark(inputFn, BruteForceMedian, function(row){
+    runBenchmark(randomArrayFn(inputLength), BruteForceMedian, function(row){
       bfmCsvStream.write(row);
-    }, 1);
-    runBenchmark(inputFn, Median, function(row){
+    }, 50);
+    runBenchmark(randomArrayFn(inputLength), Median, function(row){
       mCsvStream.write(row);
-    }, 1);
+    }, 10);
 }
 
 // end write streams and write to file

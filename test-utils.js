@@ -3,17 +3,23 @@ const Benchmark = require('benchmark');
 // lodash utilities
 const _ = require('lodash');
 
-function runBenchmark(arrayFn, testFn, csvStream, minSamples) {
+function runBenchmark(arrayFn, testFn, callback, minSamples) {
     var suite = new Benchmark.Suite;
     var testArray = arrayFn();
+    var counter = {};
+    var totalCounter = 0;
+    var totalRuns = 0;
     console.log('inputLength: ' , testArray.length,
         ', algorithm: ', testFn.name,
         ', min samples:', minSamples);
     suite
         .add(testFn.name, function () {
-            testFn(testArray);
+            testFn(testArray, counter, testFn.name);
+            totalCounter += counter[testFn.name];
+            totalRuns += 1;
+            counter = {};
         }, {
-            onCycle: function() {
+            onCycle: function(event) {
                 // update testArray with arrayFn
                 testArray = arrayFn();
             },
@@ -21,25 +27,29 @@ function runBenchmark(arrayFn, testFn, csvStream, minSamples) {
         })
         // do this per cycle
         .on('cycle', function (event) {
-            console.log(String(event.target));
             // record input length
             var arrayLength = testArray.length;
             // Benchmark.js gives result in opts/sec, we just convert it to ms
             // execution time in ms ( 1000 ms / (opts/sec) )
             var executionTime = 1000 / event.target.hz.toFixed(0);
-            csvStream.write({inputLength: arrayLength, executionTime: executionTime});
+
+            callback({inputLength: arrayLength,
+                executionTime: executionTime,
+                basicOps: Math.ceil(totalCounter / totalRuns)});
+
+            counter = {};
         })
         // run test synchronously
         .run({ async: false });
 }
 
-function makeRandom(ceil, minDelta) {
-    // generate random integer from 1 to ceil
-    return +(Math.random() * ceil + minDelta).toFixed(0);
+function makeRandom(ceil, floor) {
+    // generate random integer from floor to ceil
+    return +(Math.random() * ceil + floor).toFixed(0);
 }
 
 // array of random unique numbers
-function randomArrayFn(inputLength) {
+function randomUniqueArrayFn(inputLength) {
     var input = [];
     // generate array length of random sequential numbers
     // each number is 1 - 5 apart
@@ -65,7 +75,7 @@ function randomArrayFn(inputLength) {
     return arrFn;
 }
 
-function trueRandomArrayFn(inputLength){
+function randomArrayFn(inputLength){
     return function () {
         var input = [];
         var i;
@@ -79,6 +89,7 @@ function trueRandomArrayFn(inputLength){
 
 // generate input sizes
 // input sizes exponentially decrease until delta < maxStep, then decrease by maxStep
+// these the whole array is reversed to ascending order
 function generateInputSizes(maxInputLength, maxStep) {
     var inputSizes = [];
     var i = 1;
@@ -89,17 +100,12 @@ function generateInputSizes(maxInputLength, maxStep) {
         i = Math.min(2 * i, maxStep);
     }
 
-    return _.reverse(inputSizes);
+    return inputSizes.reverse();
 }
 
 module.exports = {
     runBenchmark: runBenchmark,
-    // makeRandom: makeRandom,
     randomArrayFn: randomArrayFn,
     generateInputSizes: generateInputSizes,
-    trueRandomArrayFn: trueRandomArrayFn
-    // can we stop the program from running when:
-    //   - the required time to calculate more than 30s 
-    //   OR - reach the maximum number we wanan set?
-    
+    randomUniqueArrayFn: randomUniqueArrayFn
 };

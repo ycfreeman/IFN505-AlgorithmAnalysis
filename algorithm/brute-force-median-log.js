@@ -1,6 +1,15 @@
 "use strict";
 
-function BruteForceMedian(A) {
+var basicOp = 0;
+
+function BruteForceMedian(A, counter, counterKey) {
+    var results = BruteForceMedianAlgorithm(A);
+    counter[counterKey] = basicOp;
+    basicOp = 0;
+    return results;
+}
+
+function BruteForceMedianAlgorithm(A) {
     var n = A.length;
     var k = Math.abs(n / 2);
 
@@ -12,6 +21,7 @@ function BruteForceMedian(A) {
         numequal = 0;
         for (j = 0; j <= n - 1; j = j + 1) {
             if (A[j] < A[i]) {
+                basicOp++;
                 numsmaller = numsmaller + 1;
             } else {
                 if (A[j] == A[i]) {

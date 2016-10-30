@@ -14,8 +14,8 @@ const generateInputSizes = testUtils.generateInputSizes;
 
 
 // algorithms
-const BruteForceMedian = require('./algorithm/brute-force-median');
-const Median = require('./algorithm/median');
+const BruteForceMedian = require('./algorithm/brute-force-median-log');
+const Median = require('./algorithm/median-log');
 
 // create file stream for brute force median result spreadsheet
 var bfmCsvStream = csv.createWriteStream({headers: true}),
@@ -48,12 +48,14 @@ console.log('number of sample sizes:', inputSizes.length);
 for (i = 0; i < inputSizes.length; i++) {
     inputLength = inputSizes[i];
     // generate a large number of samples and benchmark both algorithms with each sample
-
-    runBenchmark(trueRandomArrayFn(inputLength), BruteForceMedian, bfmCsvStream, 300);
-    runBenchmark(trueRandomArrayFn(inputLength), Median, mCsvStream, 100);
+    runBenchmark(trueRandomArrayFn(inputLength), BruteForceMedian, function(row){
+      bfmCsvStream.write(row);
+    }, 300);
+    runBenchmark(trueRandomArrayFn(inputLength), Median, function(row){
+      mCsvStream.write(row);
+    }, 100);
 }
 
 // end write streams and write to file
 bfmCsvStream.end();
 mCsvStream.end();
-
