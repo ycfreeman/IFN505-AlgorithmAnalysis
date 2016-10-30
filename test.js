@@ -5,9 +5,8 @@ const testUtils = require('./test-utils');
 const runBenchmark = testUtils.runBenchmark;
 const randomArrayFn = testUtils.randomArrayFn;
 const generateInputSizes = testUtils.generateInputSizes;
-const run = testUtils.run;
 
-var sampleArray = randomArrayFn(29)();
+var sampleArray = randomArrayFn(1000)();
 
 // algorithms
 const BruteForceMedian = require('./algorithm/brute-force-median-log');

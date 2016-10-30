@@ -20,8 +20,8 @@ function BruteForceMedianAlgorithm(A) {
         numsmaller = 0;
         numequal = 0;
         for (j = 0; j <= n - 1; j = j + 1) {
+            basicOp++;
             if (A[j] < A[i]) {
-                basicOp++;
                 numsmaller = numsmaller + 1;
             } else {
                 if (A[j] == A[i]) {
